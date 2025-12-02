@@ -4,6 +4,7 @@ import { Input } from 'react-native-elements';
 import Icon from '@react-native-vector-icons/ionicons';
 import { LinearGradient } from 'react-native-linear-gradient';
 import { ipAddress } from './IpPublic';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginForm = ({ navigation }) => {
   const [email, setEmail] = useState('');
@@ -27,6 +28,7 @@ const LoginForm = ({ navigation }) => {
 
       const data = await response.json();
       if (response.ok) {
+        await AsyncStorage.setItem('userToken', data.token); // Simpan token ke AsyncStorage
         navigation.replace('Home');
       } else {
         setLoading(false);

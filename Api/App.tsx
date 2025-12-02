@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Platform } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Platform, ActivityIndicator } from 'react-native';
 import { useLinkBuilder, useTheme } from '@react-navigation/native';
 import { Text, PlatformPressable } from '@react-navigation/elements';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,6 +10,7 @@ import ReportScreen from './src/ReportScreen';
 import UserScreen from './src/UserScreen';
 import Icon from '@react-native-vector-icons/ionicons';
 import { NavigationContainer } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function MyTabBar({ state, descriptors, navigation }) {
   const { colors } = useTheme();
@@ -105,8 +106,34 @@ function MyTabBar({ state, descriptors, navigation }) {
   );
 }
 
-export default function Index() {
+export default function App() {
   const Tab = createBottomTabNavigator();
+
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const token = await AsyncStorage.getItem('userToken');
+      if (token) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+      setLoading(false);
+    };
+
+    checkLoginStatus();
+  }, []);
+
+  if (loading) {
+    return (
+      <View>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
   return (
     <NavigationContainer>
       <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
