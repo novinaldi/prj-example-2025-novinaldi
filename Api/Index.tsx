@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Tabs from './App';
@@ -9,24 +9,24 @@ export default function Index() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Tabs">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
-          name="Login"
-          component={FormLogin}
+          name="Tabs"
+          component={Tabs}
           options={{
             headerShown: false,
           }}
         />
         <Stack.Screen
-          name="Tabs"
-          component={Index}
+          name="Login"
+          component={Login}
           options={{
             headerShown: false,
           }}
         />
         <Stack.Screen
           name="Register"
-          component={FormRegistrasi}
+          component={Register}
           options={{
             headerShown: false,
           }}
@@ -35,5 +35,3 @@ export default function Index() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({});

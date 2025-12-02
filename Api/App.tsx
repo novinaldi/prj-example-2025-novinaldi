@@ -9,7 +9,6 @@ import ScanQrScreen from './src/ScanQrScreen';
 import ReportScreen from './src/ReportScreen';
 import UserScreen from './src/UserScreen';
 import Icon from '@react-native-vector-icons/ionicons';
-import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function MyTabBar({ state, descriptors, navigation }) {
@@ -135,55 +134,53 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            headerShown: false,
-            headerTitleStyle: { color: 'white' },
-            headerStyle: { backgroundColor: '#2596be' },
-          }}
-        />
+    <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+          headerTitleStyle: { color: 'white' },
+          headerStyle: { backgroundColor: '#2596be' },
+        }}
+      />
 
-        <Tab.Screen
-          name="Activity"
-          component={ActivityScreen}
-          options={{
-            headerShown: false,
-            headerTitleStyle: { color: 'white' },
-            headerStyle: { backgroundColor: '#2596be' },
-          }}
-        />
-        <Tab.Screen
-          name="Scan"
-          component={ScanQrScreen}
-          options={{
-            headerShown: false,
-            headerTitleStyle: { color: 'white' },
-            headerStyle: { backgroundColor: '#2596be' },
-          }}
-        />
-        <Tab.Screen
-          name="Report"
-          component={ReportScreen}
-          options={{
-            headerShown: false,
-            headerTitleStyle: { color: 'white' },
-            headerStyle: { backgroundColor: '#2596be' },
-          }}
-        />
-        <Tab.Screen
-          name="User"
-          component={UserScreen}
-          options={{
-            headerShown: false,
-            headerTitleStyle: { color: 'white' },
-            headerStyle: { backgroundColor: '#2596be' },
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+      <Tab.Screen
+        name="Activity"
+        component={ActivityScreen}
+        options={{
+          headerShown: false,
+          headerTitleStyle: { color: 'white' },
+          headerStyle: { backgroundColor: '#2596be' },
+        }}
+      />
+      <Tab.Screen
+        name="Scan"
+        component={ScanQrScreen}
+        options={{
+          headerShown: false,
+          headerTitleStyle: { color: 'white' },
+          headerStyle: { backgroundColor: '#2596be' },
+        }}
+      />
+      <Tab.Screen
+        name="Report"
+        component={ReportScreen}
+        options={{
+          headerShown: false,
+          headerTitleStyle: { color: 'white' },
+          headerStyle: { backgroundColor: '#2596be' },
+        }}
+      />
+      <Tab.Screen
+        name="User"
+        component={UserScreen}
+        options={{
+          headerShown: false,
+          headerTitleStyle: { color: 'white' },
+          headerStyle: { backgroundColor: '#2596be' },
+        }}
+      />
+    </Tab.Navigator>
   );
 }
