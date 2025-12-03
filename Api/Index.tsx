@@ -7,15 +7,14 @@ import Register from './RegisterScreen';
 
 export default function Index() {
   const Stack = createNativeStackNavigator();
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator>
         <Stack.Screen
           name="Tabs"
           component={Tabs}
-          options={{
-            headerShown: false,
-          }}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Login"

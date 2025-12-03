@@ -9,7 +9,6 @@ import ScanQrScreen from './src/ScanQrScreen';
 import ReportScreen from './src/ReportScreen';
 import UserScreen from './src/UserScreen';
 import Icon from '@react-native-vector-icons/ionicons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function MyTabBar({ state, descriptors, navigation }) {
   const { colors } = useTheme();
@@ -107,31 +106,6 @@ function MyTabBar({ state, descriptors, navigation }) {
 
 export default function App() {
   const Tab = createBottomTabNavigator();
-
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      const token = await AsyncStorage.getItem('userToken');
-      if (token) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-      setLoading(false);
-    };
-
-    checkLoginStatus();
-  }, []);
-
-  if (loading) {
-    return (
-      <View>
-        <ActivityIndicator size="large" color="#0000ff" />
-      </View>
-    );
-  }
 
   return (
     <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>

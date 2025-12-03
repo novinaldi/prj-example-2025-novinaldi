@@ -28,13 +28,15 @@ const LoginForm = ({ navigation }) => {
 
       const data = await response.json();
       if (response.ok) {
-        await AsyncStorage.setItem('userToken', data.token); // Simpan token ke AsyncStorage
-        navigation.replace('Home');
+        await AsyncStorage.setItem('userToken', data.token);
+        navigation.replace('MainApp');
       } else {
         setLoading(false);
         Alert.alert('Login Failed', data.message || 'Invalid credentials');
       }
+      console.log(data);
     } catch (error) {
+      console.log(error);
       setLoading(false);
       Alert.alert('Error', `An error occurred: ${error}`);
     }
